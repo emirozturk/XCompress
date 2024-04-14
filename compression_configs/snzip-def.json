@@ -1,0 +1,9 @@
+{
+    "name": "Snappy-Snzip",
+    "executable_path": "snzip",
+    "input_file_param":"{input_file}",
+    "output_file_param":"stdout",
+    "compression_params": ["-k", "-c", "@input_file_param"],
+    "decompression_params": ["-d", "-k","-c","@input_file_param"],
+    "extension": "sz"
+}

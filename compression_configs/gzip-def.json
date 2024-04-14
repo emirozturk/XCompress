@@ -1,0 +1,9 @@
+{
+    "name": "gzip",
+    "executable_path": "gzip",
+    "input_file_param":"{input_file}",
+    "output_file_param":"stdout",
+    "compression_params": ["-c","-k","-f", "@input_file_param"],
+    "decompression_params": ["-d","-k","-f","-c", "@input_file_param"],
+    "extension": "gz"
+}
