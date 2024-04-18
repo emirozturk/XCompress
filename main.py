@@ -1,5 +1,8 @@
 #Exception handling
 #Logging to console to log file or dont show logging
+#Huffman
+#NNCP
+#RLE
 import readchar
 import sys
 from select_compression import select_compression
