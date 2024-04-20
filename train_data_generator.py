@@ -2,7 +2,7 @@ import os
 import json
 from batch_ops import batch_compress_decompress 
 
-directories = [#"/mnt/c/USers/emiro/Desktop/ProjectX/Dataset/NatLang",
+directories = ["/mnt/c/USers/emiro/Desktop/ProjectX/Dataset/NatLang",
                "/mnt/c/USers/emiro/Desktop/ProjectX/Dataset/ProgLang",
                "/mnt/c/USers/emiro/Desktop/ProjectX/Dataset/Sensordata",
                "/mnt/c/USers/emiro/Desktop/ProjectX/Dataset/Sql"
@@ -20,7 +20,10 @@ for directory in directories:
             results.extend(previous_results)
 
     for text_file in text_files:
-        result = batch_compress_decompress(os.path.join(directory,text_file),"/mnt/c/USers/emiro/Desktop/ProjectX/CompressedFiles",skip_if_file_exists=True)
-        results.extend(result)
-        with open(results_file_path, "w") as json_file:
-            json.dump(results, json_file)
+        try:
+            result = batch_compress_decompress(os.path.join(directory,text_file),"/mnt/c/USers/emiro/Desktop/ProjectX/CompressedFiles",skip_if_file_exists=True)
+            results.extend(result)
+            with open(results_file_path, "w") as json_file:
+                json.dump(results, json_file)
+        except:
+            pass
