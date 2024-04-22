@@ -18,3 +18,10 @@ def load_configs(folder_path):
                 config = json.load(file)
                 configs.append(config)
     return configs
+
+
+def get_config(configs, selected_algorithm):
+    for config in configs:
+        if config['name'] == selected_algorithm:
+            return config
+    return None
