@@ -1,0 +1,4 @@
+#Exception handling
+#Logging to console to log file or dont show logging
+#Benchmark ve brute force remove files after testing
+#Benchmark chart support

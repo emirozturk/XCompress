@@ -1,6 +1,3 @@
-#Exception handling
-#Logging to console to log file or dont show logging
-#Benchmark ve brute force remove files after testing
 import readchar
 import sys
 from select_compression import select_compression
@@ -45,10 +42,10 @@ def main():
             sys.stdout.write("\033[F")  
             sys.stdout.write("\033[K")  
             if current_row == 0: select_compression()           
-            if current_row == 1: select_compression()           
-            if current_row == 2: select_compression()           
-            if current_row == 3: select_compression()           
-            if current_row == 4: select_compression()           
+            if current_row == 1: model_compression()           
+            if current_row == 2: brute_force_compression()           
+            if current_row == 3: benchmark()           
+            if current_row == 4: create_config()           
         elif key.lower() == 'q':
             break
 

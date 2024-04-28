@@ -6,7 +6,7 @@ from util import load_configs
 
 def print_menu(options, selected_row,config_count):
     clear_screen()
-    print(f"{config_count} configuration file(s) found.\n")
+    print(f"{config_count-1} configuration file(s) found.\n")
     print("Select Compression Algorithm:")
     for idx, option in enumerate(options):
         if idx == 0:
