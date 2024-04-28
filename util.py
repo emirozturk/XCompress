@@ -12,6 +12,7 @@ def clear_screen():
 
 def load_configs(folder_path):
     configs = []
+    folder_path = os.path.join(os.path.dirname(__file__),folder_path)
     for filename in os.listdir(folder_path):
         if filename.endswith('.json'):
             with open(os.path.join(folder_path, filename), 'r') as file:

@@ -1,11 +1,13 @@
 #Exception handling
 #Logging to console to log file or dont show logging
-#Huffman
-#RLE
 #Benchmark ve brute force remove files after testing
 import readchar
 import sys
 from select_compression import select_compression
+from bcm import model_compression
+from benchmark import benchmark
+from brute_force import brute_force_compression
+from create_config import create_config
 from util import clear_screen
 
 
@@ -43,6 +45,10 @@ def main():
             sys.stdout.write("\033[F")  
             sys.stdout.write("\033[K")  
             if current_row == 0: select_compression()           
+            if current_row == 1: select_compression()           
+            if current_row == 2: select_compression()           
+            if current_row == 3: select_compression()           
+            if current_row == 4: select_compression()           
         elif key.lower() == 'q':
             break
 
