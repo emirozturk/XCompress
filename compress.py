@@ -42,7 +42,6 @@ def compress_with_config(config_data,input_file,output_file=""):
         execution_time_ns = (end_time - start_time) * 1e9
     except Exception as e:
         print(e)
-        input()
         return "",0
     
     return output_file,execution_time_ns

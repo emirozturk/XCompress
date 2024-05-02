@@ -17,15 +17,15 @@ menu = ["Select compression algorithm",
 
 def print_menu(selected_row):
     clear_screen()
-    print('\n\033[1mXCompress\033[0m is a tool for selecting best text compression algorithm for given input.')
+    print('\n\033[1mXCompress\033[0m is a tool for selecting the best text compression algorithm for a given input.')
     print('You can choose any algorithm you want, determine the best compression or fastest compression algorithm with BCM AI,')
     print('and select the best compression algorithm with brute force.\n')
-    print("Please make selection:\n")
+    print("Please make a selection:\n")
     for idx, row in enumerate(menu):
         if idx == selected_row:
-            print("\033[32m->\033[0m", "\033[1m", row, "\033[0m")
+            print("\033[1;32m->\033[0m", "\033[1;32m", row, "\033[0m")
         else:
-            print("  ", row)
+            print("   ", row)
     print("Press q to quit")
     
 
@@ -38,7 +38,7 @@ def main():
             current_row -= 1
         elif key == readchar.key.DOWN and current_row < 4:
             current_row += 1
-        elif key == '\r' or key=='\n':
+        elif key == '\r' or key == '\n':
             sys.stdout.write("\033[F")  
             sys.stdout.write("\033[K")  
             if current_row == 0: select_compression()           
@@ -49,7 +49,7 @@ def main():
         elif key.lower() == 'q':
             break
 
-        sys.stdout.write("\033[{}A".format(len(menu)))
+        sys.stdout.write("\033[{}A".format(len(menu) + 2))
         print_menu(current_row)
 
 if __name__ == "__main__":
