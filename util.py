@@ -26,3 +26,35 @@ def get_config(configs, selected_algorithm):
         if config['name'] == selected_algorithm:
             return config
     return None
+
+
+def count_unique_symbols(file_path):
+    with open(file_path, 'r') as file:
+        text = file.read()
+        unique_symbols = set(text)
+        return len(unique_symbols)
+
+
+def round_to_class(file_size_bytes):
+    if file_size_bytes < 1050: #For 1025 issue
+        return "1kb" 
+    elif file_size_bytes < 10500: #For 10241 issue
+        return "10kb"
+    elif file_size_bytes < 105000:
+        return "100kb" 
+    elif file_size_bytes < 1050000:
+        return "1mb"
+    elif file_size_bytes < 10500000:
+        return "10mb"  
+    else:
+        return "100mb"  
+    
+    
+def bin_usc(usc_value):
+    bin_size = 50
+    return int((usc_value // bin_size) * bin_size)
+
+
+def get_file_size(file_path):
+    size = os.path.getsize(file_path)
+    return size
