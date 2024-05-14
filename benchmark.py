@@ -44,7 +44,6 @@ def print_menu(options, selected_rows, config_count, current_row):
             print("   ", "Accept")
 
 
-
 def select_config(prev_configs=None):
     configs_folder = "compression_configs"
     global configs 
@@ -108,8 +107,6 @@ def select_benchmark_type():
         elif key == readchar.key.DOWN:
             selected_index = (selected_index + 1) % 3
             display_select_benchmark_menu(menu_options, selected_index)
-
-
 
 
 def benchmark(output_to_file=False):
