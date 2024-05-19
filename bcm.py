@@ -20,7 +20,7 @@ def model_compression_param(filename,mode,output_filename):
     configs = load_configs(configs_folder)
     selected_algorithm = detect_algorithm(filename, mode.lower().replace(" ","-"))
     selected_config = get_config(configs, selected_algorithm)
-    print("\033[1mSelected compression algorithm:\033[0m", )
+    print("\033[1mSelected compression algorithm:\033[0m",selected_algorithm )
     print("\033[1mInput filename:\033[0m", filename)
     print("\033[1mOutput filename:\033[0m", output_filename)
     clear_screen()
@@ -45,14 +45,14 @@ def model_compression():
             if current_row == 0:
                 return
             elif current_row == 1:
-                mode = 1  # Speed
+                mode = 1  # Fast Compression
                 break
             elif current_row == 2:
-                mode = 2  # Compression
+                mode = 2  # Fast Decompression
                 break
             elif current_row == 3:
-                mode = 3  # Balanced
+                mode = 3  # Best Compression
         
-    filename = input("\033[1mEnter input filename: \033[0m")
-    output_filename = input("\033[1mEnter output filename (optional): \033[0m")
-    model_compression_param(filename,mode,output_filename)
+            filename = input("\033[1mEnter input filename: \033[0m")
+            output_filename = input("\033[1mEnter output filename (optional): \033[0m")
+            model_compression_param(filename,mode_list[mode],output_filename)

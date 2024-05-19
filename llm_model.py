@@ -13,7 +13,7 @@ from util import (
 def detect_algorithm(filename,mode):
     device = "cuda" if torch.cuda.is_available else "cpu"
     base_model_name = "Llama-2-7b-hf-checkpoint-5000/"
-    model = AutoModelForCausalLM.from_pretrained(base_model_name)
+    model = AutoModelForCausalLM.from_pretrained(base_model_name).to(device)
     tokenizer = AutoTokenizer.from_pretrained(base_model_name,padding_side = 'right')
     tokenizer.pad_token = tokenizer.eos_token
     
