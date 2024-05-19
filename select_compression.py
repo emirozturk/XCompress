@@ -20,6 +20,17 @@ def print_menu(options, selected_row,config_count):
             print("   ", option['name'])
 
 
+def select_compression_param(selected_config,filename,output_filename):
+    print("\033[1mSelected compression algorithm:\033[0m", selected_config['name'])
+    print("\033[1mInput filename:\033[0m", filename)
+    print("\033[1mOutput filename:\033[0m", output_filename)
+    clear_screen()
+    output = compress_with_config(selected_config,filename,output_filename)
+    print(f"Compression completed successfully. Filename is \033[1m{output}\033[0m")
+    input("Press any key to return to menu")
+    return
+
+
 def select_compression():
     configs_folder = "compression_configs"
     configs = load_configs(configs_folder)
@@ -36,17 +47,8 @@ def select_compression():
             if current_row == 0:
                 return
             else:
-                selected_config = configs[current_row]
                 filename = input("\033[1mEnter input filename: \033[0m")
                 output_filename = input("\033[1mEnter output filename (optional): \033[0m")
-
-                print("\033[1mSelected compression algorithm:\033[0m", selected_config['name'])
-                print("\033[1mInput filename:\033[0m", filename)
-                print("\033[1mOutput filename:\033[0m", output_filename)
-                clear_screen()
-                output = compress_with_config(selected_config,filename,output_filename)
-                print(f"Compression completed successfully. Filename is \033[1m{output}\033[0m")
-                input("Press any key to return to menu")
-                return
+                select_compression_param(configs[current_row],filename,output_filename)
         elif key.lower() == 'q':
             break

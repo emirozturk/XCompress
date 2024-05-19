@@ -1,6 +1,7 @@
 import os
 import json
 
+
 def get_config_input():
     config = {}
 
@@ -26,6 +27,21 @@ def save_config_to_file(config, folder_path):
         json.dump(config, file, indent=4)
 
     print(f"Configurations saved to {file_path}")
+
+
+def create_config_param(name,executable_path,input_file_param,output_file_param,compression_params,decompression_params,extension):
+    config = {}
+    config["name"] = name
+    config["executable_path"] = executable_path
+    config["input_file_param"] = input_file_param
+    config["input_file_param"]+="{input_file}"
+    config["output_file_param"] = output_file_param
+    if config["output_file_param"]!="stdout": config["output_file_param"]+="{output_file}"
+    config["compression_params"] = compression_params
+    config["decompression_params"] = decompression_params
+    config["extension"] = extension
+
+    return config
 
 def create_config():
     config = get_config_input()

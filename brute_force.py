@@ -20,8 +20,10 @@ def print_menu(selected_row,options):
             print("\033[32m   ", option[idx], "\033[0m")
 
 
-def brute_force(filename, configs, out_folder, delete_except_minimum=False):
+def brute_force_param(filename, out_folder, output_filename, delete_except_minimum=False):
     result_list = []
+    configs_folder = "compression_configs"
+    configs = load_configs(configs_folder)
     for config_file in configs:
         name = config_file["name"]            
         try:
@@ -39,21 +41,8 @@ def brute_force(filename, configs, out_folder, delete_except_minimum=False):
             if result["name"] != min_size_name:
                 os.remove(result["output_file"])
     
-    return min_size_name
-
-
-def brute_force_compression():
-    configs_folder = "compression_configs"
-    configs = load_configs(configs_folder)
-    filename = input("\033[1mEnter input filename: \033[0m")
-    output_filename = input("\033[1mEnter output filename (optional): \033[0m")
-    delete_except_minimum = input("\033[1mKeep only minimum sized file([Y]/n) \033[0m")
-    if delete_except_minimum == "Y" or delete_except_minimum == "y" or delete_except_minimum == "":
-        delete_except_minimum = True
-    else:
-        delete_except_minimum = False
-    selected_algorithm = brute_force(filename,configs,os.path.dirname(__file__),delete_except_minimum)
-    selected_config = get_config(configs,selected_algorithm)
+    selected_config = get_config(configs,min_size_name)
+    
     print("\033[1mSelected compression algorithm:\033[0m", )
     print("\033[1mInput filename:\033[0m", filename)
     print("\033[1mOutput filename:\033[0m", output_filename)
@@ -62,3 +51,15 @@ def brute_force_compression():
     print(f"Compression completed successfully. Filename is \033[1m{output}\033[0m")
     input("Press any key to return to menu")
     return
+
+
+def brute_force_compression():
+    filename = input("\033[1mEnter input filename: \033[0m")
+    output_filename = input("\033[1mEnter output filename (optional): \033[0m")
+    delete_except_minimum = input("\033[1mKeep only minimum sized file([Y]/n) \033[0m")
+    if delete_except_minimum == "Y" or delete_except_minimum == "y" or delete_except_minimum == "":
+        delete_except_minimum = True
+    else:
+        delete_except_minimum = False
+    
+    return brute_force_param(filename,os.path.dirname(__file__),output_filename,delete_except_minimum)

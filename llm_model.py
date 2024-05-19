@@ -11,15 +11,16 @@ from util import (
 )
 
 def detect_algorithm(filename,mode):
-    base_model_name = "Llama-2-7b-hf/checkpoint-2000"
+    device = "cuda" if torch.cuda.is_available else "cpu"
+    base_model_name = "Llama-2-7b-hf-checkpoint-5000/"
     model = AutoModelForCausalLM.from_pretrained(base_model_name)
     tokenizer = AutoTokenizer.from_pretrained(base_model_name,padding_side = 'right')
     tokenizer.pad_token = tokenizer.eos_token
     
     usc = bin_usc(count_unique_symbols(filename))
-    file_size = round_to_class(get_file_size)
+    file_size = round_to_class(get_file_size(filename))
     eval_prompt = f"### Instruction: We need to find algorithm from given input params: (usc:{usc}, file_size:{file_size}, compression_type: {mode})."
-    model_input = tokenizer(eval_prompt, return_tensors="pt").to("cuda")
+    model_input = tokenizer(eval_prompt, return_tensors="pt").to(device)
 
     model.eval()
     with torch.no_grad():
