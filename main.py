@@ -114,21 +114,21 @@ def main():
             sys.stdout.write("\033[{}A".format(7))
             print_menu(current_row)
     else:
-        if args.command == "Manual compression algorithm selection":
+        if args.command == "manual":
             select_compression_param(args.algorithm_name, args.input_filename, args.output_filename)
-        elif args.command == "BCM compression algorithm selection":
+        elif args.command == "bcm":
             model_compression_param(args.mode, args.input_filename, args.output_filename)
-        elif args.command == "Brute force compression algorithm selection":
+        elif args.command == "brute_force":
             brute_force_param(args.input_filename, args.output_filename, args.delete_except_minimum)
-        elif args.command == "Benchmark":
+        elif args.command == "benchmark":
             benchmark_param(args.selected_config_names, args.benchmark_type, args.output_to_file, args.output_plots)
-        elif args.command == "Config creation":
+        elif args.command == "config_creation":
             create_config_param(args.name, args.executable_path, args.input_file_param, args.output_file_param, args.compression_params, args.decompression_params, args.extension)            
-        for subparser in [parser_select_compression, parser_model_compression, parser_brute_force, parser_benchmark, parser_create_config]:
-            print("\n" + subparser.prog)
-            subparser.print_help()
+        elif args.command == "help":
+            for subparser in [parser_select_compression, parser_model_compression, parser_brute_force, parser_benchmark, parser_create_config]:
+                print("\n" + subparser.prog)
+                subparser.print_help()
 
-          
 
 if __name__ == "__main__":
     main()

@@ -13,7 +13,7 @@ def compress_with_config(config_data,input_file,output_file=""):
 
         
         output_file_param = config_data["output_file_param"]
-        if output_file=="":
+        if output_file=="" or output_file is None:
             if output_file_param != "stdout":
                 output_file = output_file_param.replace("{output_file}",f"{input_file}.{config_data['extension']}")
                 compression_params = [x.replace("@output_file_param",output_file) if "@output_file_param" in x else x for x in compression_params]

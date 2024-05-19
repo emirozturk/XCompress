@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["--help"]  // Replace with your actual arguments
+            "args": ["manual","gzip","c:/Users/emiro/Desktop/arc_recovery_packet.txt"]  // Replace with your actual arguments
         }
     ]
 }
