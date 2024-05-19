@@ -69,10 +69,12 @@ def main():
 
     # Benchmark (with help message)
     parser_benchmark = subparsers.add_parser("benchmark", help="Runs benchmarks on specified compression configurations and outputs results to file or plots.")
-    parser_benchmark.add_argument("algorithm_names", nargs='+', help="Space-separated list of config names to benchmark.")
-    parser_benchmark.add_argument("benchmark_type", choices=["compress", "compress-decompress"], help="The type of benchmark to run (compression or compression-decompression).")
+    parser_benchmark.add_argument("benchmark_type", choices=["compress", "compress_decompress"], help="The type of benchmark to run (compression or compression-decompression).")
+    parser_benchmark.add_argument("input_filename", help="The path to the file to compress.")
     parser_benchmark.add_argument("output_to_file", type=bool, help="Whether to output results to a file")
     parser_benchmark.add_argument("output_plots", type=bool, help="Whether to generate plots from the benchmark results.")
+    parser_benchmark.add_argument("algorithm_names", nargs='+', help="Space-separated list of config names to benchmark.")
+    parser_benchmark.add_argument("--output_filename", default=None, help="The path to save the compressed file (defaults to input filename with .<algorithm> extension).")
 
     # Create Config (with help message)
     parser_create_config = subparsers.add_parser("config_creation", help="Creates a configuration file for a custom compression algorithm.")
@@ -121,7 +123,7 @@ def main():
         elif args.command == "brute_force":
             brute_force_param(args.input_filename, args.output_filename, args.delete_except_minimum)
         elif args.command == "benchmark":
-            benchmark_param(args.selected_config_names, args.benchmark_type, args.output_to_file, args.output_plots)
+            benchmark_param(args.algorithm_names, args.benchmark_type,args.input_filename,args.output_filename, args.output_to_file, args.output_plots)
         elif args.command == "config_creation":
             create_config_param(args.name, args.executable_path, args.input_file_param, args.output_file_param, args.compression_params, args.decompression_params, args.extension)            
         elif args.command == "help":
