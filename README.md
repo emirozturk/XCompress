@@ -1,16 +1,16 @@
-## XCompress: Intelligent Text Compression
+# XCompress: LLM Assisted Python-based Text Compression Toolkit
 
-XCompress is your go-to tool for finding the most efficient text compression algorithm. It empowers you with manual selection, AI-powered recommendations, brute-force optimization, and performance benchmarking.
+XCompress is an adaptable tool designed to streamline the selection and evaluation of text compression algorithms. Leveraging a combination of manual selection, AI-driven recommendations (via CSM), brute-force optimization, and comprehensive benchmarking, XCompress empowers users to achieve optimal text compression for their specific requirements.
 
-### Features
+## Key Features
 
-* **Manual Selection:** Choose from a variety of compression algorithms based on your specific needs.
-* **AI-Powered Selection (BCM):** Let our intelligent model (BCM) recommend the best algorithm for fast compression, fast decompression, or the best overall compression ratio.
-* **Brute Force Optimization:** Systematically test all available algorithms to discover the absolute best compression for your file.
-* **Benchmarking:** Compare the performance of different algorithms on your chosen file.
-* **Custom Configurations:** Easily integrate and use your own compression algorithms.
+* **Manual Algorithm Selection:** Researchers and practitioners can exercise fine-grained control by manually choosing from a diverse set of established compression algorithms.
+* **CSM-Guided Algorithm Recommendation:** The integrated CSM (Compression Selection Model) leverages artificial intelligence to intelligently suggest the most suitable algorithm based on user-defined priorities, such as minimizing compression time, decompression time, or achieving the highest compression ratio.
+* **Brute-Force Optimization:** For scenarios demanding the absolute best compression, XCompress offers a brute-force search functionality that systematically evaluates all available algorithms to identify the one yielding the smallest compressed file size.
+* **Comprehensive Benchmarking:** A robust benchmarking module facilitates direct comparison of algorithm performance on specified datasets, aiding in evidence-based decision-making.
+* **Extensibility for Custom Algorithms:** XCompress allows users to seamlessly integrate and evaluate their own novel compression algorithms, fostering innovation and customization.
 
-### Installation
+## Installation
 
 1. **Clone the Repository:**
    ```bash
@@ -22,78 +22,57 @@ XCompress is your go-to tool for finding the most efficient text compression alg
    pip install -r requirements.txt
    ```
 
-### Usage
+## Usage
 
-**Interactive Menu**
+**Interactive Mode**
 
-Launch the interactive menu by simply running the script:
+Initiate the interactive mode by executing the following command:
 
 ```bash
 python main.py
 ```
 
-Navigate using arrow keys and press Enter to select options.
+Navigate through the menu-driven interface using arrow keys and select options using the Enter key.
 
-**Command Line Interface (CLI)**
+**Command-Line Interface (CLI)**
 
-For more precise control, use the following command structure:
+For scripted or automated workflows, utilize the command-line interface:
 
 ```bash
 python main.py <command> [options]
 ```
 
-**Command Details**
+**Command Reference**
 
 *   `manual <algorithm_name> <input_filename> [--output_filename]`
-    *   `algorithm_name`: The name of the compression algorithm (e.g., "gzip", "bzip2", "lzma").
-    *   `input_filename`: The path to the text file you want to compress.
-    *   `--output_filename` (optional): The desired name for the compressed file.
+    *   `algorithm_name`: The identifier of the desired compression algorithm (e.g., "gzip", "bzip2", "lzma").
+    *   `input_filename`: The path to the text file to be compressed.
+    *   `--output_filename` (optional): The name to be assigned to the resulting compressed file.
 
-*   `bcm <mode> <input_filename> [--output_filename]`
-    *   `mode`: Choose between "fast-compression", "fast-decompression", or "best-compression".
+*   `csm <mode> <input_filename> [--output_filename]`
+    *   `mode`: Specify the optimization goal: "fast-compression", "fast-decompression", or "best-compression".
     *   `input_filename`: The path to the text file.
     *   `--output_filename` (optional): The name for the compressed file.
 
 *   `brute_force <input_filename> <delete_except_minimum>`
     *   `input_filename`: The path to the text file.
-    *   `delete_except_minimum`: Set to "True" to keep only the smallest compressed file.
+    *   `delete_except_minimum`: Set to "True" to retain only the smallest compressed file generated during the brute-force process.
 
 *   `benchmark <benchmark_type> <input_filename> <output_to_file> <output_plots> <algorithm_names> [--output_filename]`
-    *   `benchmark_type`: Either "compress" (compression only) or "compress_decompress" (compression and decompression).
+    *   `benchmark_type`: Choose "compress" for compression-only benchmarks or "compress_decompress" for compression and decompression benchmarks.
     *   `input_filename`: The path to the text file.
-    *   `output_to_file`: Set to "True" to save results to a file.
-    *   `output_plots`: Set to "True" to generate plots.
-    *   `algorithm_names`: A space-separated list of algorithm names or configuration names to benchmark (e.g., "gzip lzma my_custom_config").
+    *   `output_to_file`: Set to "True" to save benchmark results in a structured file format.
+    *   `output_plots`: Set to "True" to generate visual plots summarizing the benchmark results.
+    *   `algorithm_names`: A space-separated list of algorithm names or custom configuration names to include in the benchmark.
 
 *   `config_creation <name> <executable_path> <input_file_param> <output_file_param> <compression_params> <decompression_params> <extension>`
-    *   Detailed parameters for creating custom configurations (refer to code comments or documentation for guidance).
+    *   Detailed parameters for defining custom compression algorithm configurations (refer to code documentation for guidance).
 
-### Examples
+## Contributing
 
-**Manual Compression (Bzip2):**
+Contributions that enhance the functionality, usability, or documentation of XCompress are warmly welcomed. Please adhere to established code style guidelines and provide comprehensive documentation for any new features or modifications.
 
-```bash
-python main.py manual bzip2 my_document.txt --output_filename my_document_compressed.bz2
-```
 
-**AI Selection (Fast Decompression):**
-
-```bash
-python main.py bcm fast-decompression my_log_file.txt
-```
-**Brute Force Compression:**
-```bash
-python main.py brute_force my_log_file.txt
-```
-**Benchmark:**
-```bash
-python main.py benchmark compress my_text_file.txt True True gzip bzip2 lzma
-```
-
-### Contributing
-
-Contributions are highly appreciated! Feel free to open issues to report problems or submit pull requests with enhancements.
-
-### License
+## License
 
 This project is licensed under the MIT License.
