@@ -102,7 +102,7 @@ def select_benchmark_type():
             elif selected_index == 1:
                 return "compress"
             elif selected_index == 2:
-                return "compress-decompress"
+                return "compress_decompress"
         elif key == readchar.key.UP:
             selected_index = (selected_index - 1) % 3
             display_select_benchmark_menu(menu_options, selected_index)
@@ -114,65 +114,48 @@ def select_benchmark_type():
 def plot_results(results):
     algorithms = list(set([result['name'] for result in results]))
 
-    file_sizes = {alg: [] for alg in algorithms}
-    compressed_sizes = {alg: [] for alg in algorithms}
-    compression_times = {alg: [] for alg in algorithms}
-    decompression_times = {alg: [] for alg in algorithms if 'decompression_time_ns' in results[0]}
-
-    for result in results:
-        alg = result['name']
-        file_sizes[alg].append(result['file_size'])
-        compressed_sizes[alg].append(result['compressed_size'])
-        compression_times[alg].append(result['compression_time_ns'])
-        if 'decompression_time_ns' in result:
-            decompression_times[alg].append(result['decompression_time_ns'])
-
     fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(10, 15))
 
-    for alg in algorithms:
-        ax1.plot(file_sizes[alg], compressed_sizes[alg], marker='o', label=alg)
-    ax1.set_title('Compressed Size vs. Original File Size')
-    ax1.set_xlabel('Original File Size (bytes)')
+    # Plot compressed size comparison
+    ax1.bar(algorithms, [result['compressed_size'] for result in results], color='skyblue')
+    ax1.set_title('Compressed Size Comparison')
     ax1.set_ylabel('Compressed Size (bytes)')
-    ax1.legend()
-    ax1.grid(True)
-    fig.savefig("results_compressed_size.png")
 
-    for alg in algorithms:
-        ax2.plot(file_sizes[alg], compression_times[alg], marker='o', label=alg)
-    ax2.set_title('Compression Time vs. Original File Size')
-    ax2.set_xlabel('Original File Size (bytes)')
+    # Plot compression time comparison
+    ax2.bar(algorithms, [result['compression_time_ns'] for result in results], color='lightgreen')
+    ax2.set_title('Compression Time Comparison')
     ax2.set_ylabel('Compression Time (ns)')
-    ax2.legend()
-    ax2.grid(True)
-    fig.savefig("results_compression_time.png")
 
-    for alg in decompression_times:
-        ax3.plot(file_sizes[alg], decompression_times[alg], marker='o', label=alg)
-    ax3.set_title('Decompression Time vs. Original File Size')
-    ax3.set_xlabel('Original File Size (bytes)')
-    ax3.set_ylabel('Decompression Time (ns)')
-    ax3.legend()
-    ax3.grid(True)
+    # Plot decompression time comparison if available
+    decompression_times = [result['decompression_time_ns'] for result in results if 'decompression_time_ns' in result]
+    if decompression_times:
+        ax3.bar(algorithms, decompression_times, color='salmon')
+        ax3.set_title('Decompression Time Comparison')
+        ax3.set_ylabel('Decompression Time (ns)')
+    else:
+        ax3.axis('off')  # Hide decompression time comparison if not available
+
+    # Adjust layout
+    plt.subplots_adjust(hspace=0.5)
+
+    # Save plots to files
+    fig.savefig("results_compressed_size.png")
+    fig.savefig("results_compression_time.png")
     fig.savefig("results_decompression_time.png")
 
 
-def benchmark_param(selected_config_names,benchmark_type,output_to_file=False, output_plots=False):
+def benchmark_param(selected_config_names,benchmark_type,filename,output_filename,output_to_file=False, output_plots=False):
     all_results = []
     configs_folder = "compression_configs"
     configs = load_configs(configs_folder)
     selected_configs = [get_config(configs,x) for x in selected_config_names]
+    result_list = []
     for config in selected_configs:
-        filename = input("\033[1mEnter input filename: \033[0m")
-        output_filename = input("\033[1mEnter output filename (optional): \033[0m")
-
-        print("\033[1mSelected compression algorithm:\033[0m", configs[config]['name'])
+        print("\033[1mSelected compression algorithm:\033[0m", config['name'])
         print("\033[1mInput filename:\033[0m", filename)
         print("\033[1mOutput filename:\033[0m", output_filename)
-        clear_screen()
-        result_list = []
         if benchmark_type == "compress":
-            output_file, compression_time_ns = compress_with_config(configs[config], filename, output_filename)
+            output_file, compression_time_ns = compress_with_config(config, filename, output_filename)
             file_size = os.path.getsize(filename)
             compressed_size = os.path.getsize(output_file)
             result_list.append({"filename": filename,
@@ -180,24 +163,22 @@ def benchmark_param(selected_config_names,benchmark_type,output_to_file=False, o
                                 "file_size": file_size,
                                 "compressed_size": compressed_size,
                                 "compression_time_ns": compression_time_ns})
-        if benchmark_type == "compress-decompress":
-            output_file, compression_time_ns = compress_with_config(configs[config], filename, output_filename)
+        if benchmark_type == "compress_decompress":
+            output_file, compression_time_ns = compress_with_config(config, filename, output_filename)
             file_size = os.path.getsize(filename)
             if output_file != "":            
-                _, decompression_time_ns = decompress_with_config(configs[config], output_file)
+                _, decompression_time_ns = decompress_with_config(config, output_file)
             compressed_size = os.path.getsize(output_file)
             result_list.append({"filename": filename,
-                                "name": configs[config]["name"],
+                                "name": config["name"],
                                 "file_size": file_size,
                                 "compressed_size": compressed_size,
                                 "compression_time_ns": compression_time_ns,
                                 "decompression_time_ns": decompression_time_ns})
-            
-        all_results.extend(result_list)
 
     if output_to_file:
         with open("benchmark_results.txt", "w") as file:
-            for result in all_results:
+            for result in result_list:
                 file.write("Filename: {}\n".format(result["filename"]))
                 file.write("Name: {}\n".format(result["name"]))
                 file.write("File Size: {}\n".format(result["file_size"]))
@@ -206,7 +187,7 @@ def benchmark_param(selected_config_names,benchmark_type,output_to_file=False, o
                 file.write("Decompression Time (ns): {}\n".format(result["decompression_time_ns"]))
                 file.write("\n")
     else:
-        for result in all_results:
+        for result in result_list:
             print("Filename:", result["filename"])
             print("Name:", result["name"])
             print("File Size:", result["file_size"])
@@ -216,7 +197,7 @@ def benchmark_param(selected_config_names,benchmark_type,output_to_file=False, o
             print()
     
     if output_plots:
-        plot_results(all_results)
+        plot_results(result_list)
 
 
 def read_boolean_input(prompt):
@@ -237,6 +218,8 @@ def benchmark():
     if benchmark_type == None:
         print("No benchmark selected.")
     else:
+        filename = input("\033[1mEnter input filename: \033[0m")
+        output_filename = input("\033[1mEnter output filename (optional): \033[0m")
         output_to_file = read_boolean_input("Output to file? (y/n): ")
         output_plots = read_boolean_input("Output plots? (y/n): ")
-        benchmark_param([x["name"] for x in selected_configs],benchmark_type,output_to_file, output_plots)
+        benchmark_param([x["name"] for x in selected_configs],benchmark_type,filename,output_filename, output_to_file, output_plots)
