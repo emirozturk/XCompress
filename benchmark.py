@@ -4,7 +4,7 @@ from decompress import decompress_with_config
 from util import clear_screen, load_configs,get_config
 import matplotlib.pyplot as plt
 import os
-
+from visualization import visualization_param
 configs = []
 
 
@@ -111,39 +111,6 @@ def select_benchmark_type():
             display_select_benchmark_menu(menu_options, selected_index)
 
 
-def plot_results(results):
-    algorithms = list(set([result['name'] for result in results]))
-
-    fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(10, 15))
-
-    # Plot compressed size comparison
-    ax1.bar(algorithms, [result['compressed_size'] for result in results], color='skyblue')
-    ax1.set_title('Compressed Size Comparison')
-    ax1.set_ylabel('Compressed Size (bytes)')
-
-    # Plot compression time comparison
-    ax2.bar(algorithms, [result['compression_time_ns'] for result in results], color='lightgreen')
-    ax2.set_title('Compression Time Comparison')
-    ax2.set_ylabel('Compression Time (ns)')
-
-    # Plot decompression time comparison if available
-    decompression_times = [result['decompression_time_ns'] for result in results if 'decompression_time_ns' in result]
-    if decompression_times:
-        ax3.bar(algorithms, decompression_times, color='salmon')
-        ax3.set_title('Decompression Time Comparison')
-        ax3.set_ylabel('Decompression Time (ns)')
-    else:
-        ax3.axis('off')  # Hide decompression time comparison if not available
-
-    # Adjust layout
-    plt.subplots_adjust(hspace=0.5)
-
-    # Save plots to files
-    fig.savefig("results_compressed_size.png")
-    fig.savefig("results_compression_time.png")
-    fig.savefig("results_decompression_time.png")
-
-
 def benchmark_param(selected_config_names,benchmark_type,filename,output_filename,output_to_file=False, output_plots=False):
     all_results = []
     configs_folder = "compression_configs"
@@ -197,7 +164,7 @@ def benchmark_param(selected_config_names,benchmark_type,filename,output_filenam
             print()
     
     if output_plots:
-        plot_results(result_list)
+        visualization_param(result_list)
 
 
 def read_boolean_input(prompt):
