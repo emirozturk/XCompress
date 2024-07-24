@@ -1,0 +1,6 @@
+REAL, patientunitstayid REAL, temperature REAL, sao2 REAL, heartrate REAL, respiration REAL, systemicsystolic REAL, systemicdiastolic REAL, systemicmean REAL, observationtime TIME)
+CREATE TABLE patient (uniquepid TEXT, patienthealthsystemstayid REAL, patientunitstayid REAL, gender TEXT, age TEXT, ethnicity TEXT, hospitalid REAL, wardid REAL, admissionheight REAL, admissionweight REAL, dischargeweight REAL, hospitaladmittime TIME, hospitaladmitsource TEXT, unitadmittime TIME, unitdischargetime TIME, hospitaldischargetime TIME, hospitaldischargestatus TEXT)
+CREATE TABLE cost (costid REAL, uniquepid TEXT, patienthealthsystemstayid REAL, eventtype TEXT, eventid REAL, chargetime TIME, cost REAL)
+CREATE TABLE intakeoutput (intakeoutputid REAL, patientunitstayid REAL, cellpath TEXT, celllabel TEXT, cellvaluenumeric REAL, intakeoutputtime TIME)
+CREATE TABLE lab (labid REAL, patientunitstayid REAL, labname TEXT, labresult REAL, labresulttime TIME)
+CREATE TABLE allergy (allergyid REAL, patientunitstayid REAL, drug

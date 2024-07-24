@@ -1,0 +1,28 @@
+    return result
+def run(self, args=None, prog=None):
+        # use sys.argv if not supplied
+        if not args:
+            prog = basename(sys.argv[0])
+            args = sys.argv[1:]
+        self.prog = prog
+
+        # If completion token found in args
+        if '--bash-completion' in args:
+            return self.bash_completion(args)
+
+        # If bash completion script requested
+        if '--bash-completion-script' in args:
+            return self.bash_completion_script(prog)
+
+        # Find a subcommand in the arguments
+        for index, arg in enumerate(args):
+            if arg in self.sub_commands.keys():
+                # Remove the sub command argument
+                args.pop(index)
+                # Run the sub-command passing the remaining arguments
+                return self.sub_commands[arg](args, prog)
+
+        # Unable to find a suitable sub-command
+        return self.help()
+def bash_completion(self, args):
+        # args = ['--bash-completion', '%prog', 's
