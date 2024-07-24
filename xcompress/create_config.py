@@ -32,7 +32,7 @@ def save_config_to_file(config, folder_path):
     
     Args:
         config (dict): The configuration dictionary.
-        folder_path (str): The path to the folder where the config file will be saved.
+        folder_path (str): The path to the folder where the config file will be saved (compression_configs preferred).
     """
     name = config["name"]
     file_path = os.path.join(folder_path, f"{name}.json")

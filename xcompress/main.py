@@ -15,12 +15,6 @@ class CustomHelpAction(argparse.Action):
 
     This action overrides the default help behavior to include detailed help messages for all available subcommands.
 
-    Attributes:
-        option_strings (list): The option strings for this action.
-        dest (str): The destination for the parsed value (default: argparse.SUPPRESS).
-        default (any): The default value (default: argparse.SUPPRESS).
-        help (str): The help message (default: None).
-
     Methods:
         __init__: Initializes the CustomHelpAction instance.
         __call__: Displays help information for the parser and its subparsers.

@@ -72,7 +72,7 @@ def brute_force_param(filename, out_folder, output_filename, delete_except_minim
 
 def brute_force_compression():
     """
-    Prompts the user for input and output file details, and performs brute-force compression.
+    Prompts the user for input and output file details, and performs brute-force compression using all available configurations and selects the one with the minimum compressed size.
     """
     filename = input("\033[1mEnter input filename: \033[0m")
     output_filename = input("\033[1mEnter output filename (optional): \033[0m")
