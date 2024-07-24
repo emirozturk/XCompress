@@ -1,0 +1,12 @@
+2-gram
+Average bpc: 5.3681971306234395
+Compression Speed: 10.36 MB/s
+Decompression Speed: 3.03 MB/s
+3-gram
+Average bpc: 7.926521792368023
+Compression Speed: 15.23 MB/s
+Decompression Speed: 3.41 MB/s
+4-gram
+Average bpc: 11.707533200092726
+Compression Speed: 18.19 MB/s
+Decompression Speed: 3.36 MB/s

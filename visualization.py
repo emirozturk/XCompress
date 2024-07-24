@@ -1,5 +1,5 @@
 import json
-import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 import os
 from util import clear_screen
 import readchar
@@ -26,35 +26,82 @@ def read_results_from_files(file_paths):
 def visualization_param(results):
     algorithms = list(set([result['name'] for result in results]))
 
-    fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(10, 15))
+    # Create traces for compressed size
+    compressed_size_trace = go.Bar(
+        x=algorithms,
+        y=[result['compressed_size'] for result in results],
+        name='Compressed Size',
+        marker_color='skyblue'
+    )
 
-    # Plot compressed size comparison
-    ax1.bar(algorithms, [result['compressed_size'] for result in results], color='skyblue')
-    ax1.set_title('Compressed Size Comparison')
-    ax1.set_ylabel('Compressed Size (bytes)')
+    # Create traces for compression time
+    compression_time_trace = go.Bar(
+        x=algorithms,
+        y=[result['compression_time_ns'] for result in results],
+        name='Compression Time',
+        marker_color='lightgreen'
+    )
 
-    # Plot compression time comparison
-    ax2.bar(algorithms, [result['compression_time_ns'] for result in results], color='lightgreen')
-    ax2.set_title('Compression Time Comparison')
-    ax2.set_ylabel('Compression Time (ns)')
-
-    # Plot decompression time comparison if available
+    # Create traces for decompression time if available
     decompression_times = [result['decompression_time_ns'] for result in results if 'decompression_time_ns' in result]
     if decompression_times:
-        ax3.bar(algorithms, decompression_times, color='salmon')
-        ax3.set_title('Decompression Time Comparison')
-        ax3.set_ylabel('Decompression Time (ns)')
-    else:
-        ax3.axis('off')  # Hide decompression time comparison if not available
+        decompression_time_trace = go.Bar(
+            x=algorithms,
+            y=decompression_times,
+            name='Decompression Time',
+            marker_color='salmon'
+        )
 
-    # Adjust layout
-    plt.subplots_adjust(hspace=0.5)
+    # Create subplots
+    fig = go.Figure()
+
+    fig.add_trace(compressed_size_trace)
+    fig.add_trace(compression_time_trace)
+    if decompression_times:
+        fig.add_trace(decompression_time_trace)
+
+    fig.update_layout(
+        title='Compression Benchmark Results',
+        barmode='group',
+        xaxis_title='Algorithms',
+        yaxis_title='Values',
+        legend_title='Metrics',
+        updatemenus=[
+            {
+                "buttons": [
+                    {
+                        "label": "Compressed Size",
+                        "method": "update",
+                        "args": [{"visible": [True, False, False]}]
+                    },
+                    {
+                        "label": "Compression Time",
+                        "method": "update",
+                        "args": [{"visible": [False, True, False]}]
+                    },
+                    {
+                        "label": "Decompression Time",
+                        "method": "update",
+                        "args": [{"visible": [False, False, True]}]
+                    },
+                    {
+                        "label": "All",
+                        "method": "update",
+                        "args": [{"visible": [True, True, bool(decompression_times)]}]
+                    },
+                ],
+                "direction": "down",
+                "showactive": True,
+            }
+        ]
+    )
+
+    fig.show()
 
     # Save plots to files
-    fig.savefig("results_compressed_size.png")
-    fig.savefig("results_compression_time.png")
-    fig.savefig("results_decompression_time.png")
-    plt.show()
+    fig.write_image("results_compressed_size.png")
+    fig.write_image("results_compression_time.png")
+    fig.write_image("results_decompression_time.png")
 
 
 def visualization():
