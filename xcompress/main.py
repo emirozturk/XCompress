@@ -10,10 +10,33 @@ from util import clear_screen
 from visualization import visualization
 
 class CustomHelpAction(argparse.Action):
+    """
+    A custom argparse action that displays help information for both the main parser and its subparsers.
+
+    This action overrides the default help behavior to include detailed help messages for all available subcommands.
+    """
     def __init__(self, option_strings, dest=argparse.SUPPRESS, default=argparse.SUPPRESS, help=None):
+        """
+        Initializes the CustomHelpAction.
+
+        Args:
+            option_strings (list): The option strings for this action.
+            dest (str): The destination for the parsed value (default: argparse.SUPPRESS).
+            default (any): The default value (default: argparse.SUPPRESS).
+            help (str): The help message (default: None).
+        """
         super().__init__(option_strings=option_strings, dest=dest, default=default, nargs=0, help=help)
 
     def __call__(self, parser, namespace, values, option_string=None):
+        """
+        Displays help information for the parser and its subparsers.
+
+        Args:
+            parser (argparse.ArgumentParser): The parser to display help for.
+            namespace (argparse.Namespace): The namespace for the parsed values.
+            values (any): The values for the action (default: None).
+            option_string (str): The option string (default: None).
+        """
         parser.print_help()
         subparsers_actions = [action for action in parser._actions if isinstance(action, argparse._SubParsersAction)]
         for subparsers_action in subparsers_actions:
@@ -32,6 +55,12 @@ menu = ["Select compression algorithm",
 
 
 def print_menu(selected_row):
+    """
+    Prints the main menu for the XCompress tool.
+
+    Args:
+        selected_row (int): The index of the currently selected menu item to highlight.
+    """
     clear_screen()
     print('\n\033[1mXCompress\033[0m is a tool for selecting the best text compression algorithm for a given input.')
     print('You can choose any algorithm you want, determine the best compression or fastest compression algorithm with CSM,')
@@ -46,6 +75,13 @@ def print_menu(selected_row):
 
 
 def main():
+    """
+    The main entry point for the XCompress tool. 
+
+    This function sets up the command-line argument parser and handles user input through either command-line arguments or an interactive menu. 
+    - For command-line arguments, it parses the arguments and calls the appropriate function based on the specified command.
+    - For interactive mode, it displays a menu for the user to select various functionalities such as selecting a compression algorithm, benchmarking, creating configurations, and visualizing results.
+    """
     parser = argparse.ArgumentParser(description="XCompress Compression Tool", add_help=False)
     parser.add_argument('-h', '--help', action=CustomHelpAction, help="show this help message and exit")
 

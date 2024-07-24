@@ -11,6 +11,16 @@ from util import (
 )
 
 def detect_algorithm(filename,mode):
+    """
+    Detects the likely compression algorithm for a given file based on its characteristics and the specified mode.
+
+    Args:
+        filename (str): Path to the file for which the algorithm needs to be detected.
+        mode (str): Compression mode to be used for detection (e.g., "fast-compression", "best-compression").
+
+    Returns:
+        str: The name of the detected compression algorithm.
+    """
     device = "cuda" if torch.cuda.is_available else "cpu"
     base_model_name = "emirozturk/CSM"
     model = AutoModelForCausalLM.from_pretrained(base_model_name).to(device)

@@ -5,6 +5,14 @@ from util import load_configs
 
 
 def print_menu(options, selected_row,config_count):
+    """
+    Displays a menu for selecting a compression algorithm from a list of available configurations.
+
+    Args:
+        options (list of dict): List of available compression configurations. Each configuration is a dictionary with a "name" key.
+        selected_row (int): The index of the currently selected menu item to highlight.
+        config_count (int): The total number of configuration files found.
+    """
     clear_screen()
     print(f"{config_count-1} configuration file(s) found.\n")
     print("Select Compression Algorithm:")
@@ -21,6 +29,14 @@ def print_menu(options, selected_row,config_count):
 
 
 def select_compression_param(selected_config_name,filename,output_filename):
+    """
+    Selects a specific compression configuration and applies it to the input file.
+
+    Args:
+        selected_config_name (str): The name of the selected compression configuration.
+        filename (str): The path to the file to compress.
+        output_filename (str): The path to save the compressed file (optional; defaults to input filename with an appropriate extension if not provided).
+    """
     configs_folder = "compression_configs"
     configs = load_configs(configs_folder)
     selected_config = [x for x in configs if x["name"]==selected_config_name][0]
@@ -33,6 +49,12 @@ def select_compression_param(selected_config_name,filename,output_filename):
 
 
 def select_compression():
+    """
+    Allows the user to select a compression algorithm from a menu and apply it to a specified file.
+
+    The function loads available compression configurations from a folder, displays them in a menu, and allows the user to navigate and select one.
+    After selection, it prompts the user for input and output filenames and performs the compression.
+    """
     current_row = 0
     while True:
         configs_folder = "compression_configs"

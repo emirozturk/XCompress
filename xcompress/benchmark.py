@@ -1,17 +1,26 @@
 import readchar
 from compress import compress_with_config
 from decompress import decompress_with_config
-from util import clear_screen, load_configs,get_config
+from util import clear_screen, load_configs, get_config
 import matplotlib.pyplot as plt
 import os
 from visualization import visualization_param
+
 configs = []
 
-
 def print_menu(options, selected_rows, config_count, current_row):
+    """
+    Prints the menu for selecting compression algorithms.
+
+    Args:
+        options (List[Dict[str, str]]): List of configuration options.
+        selected_rows (Set[int]): Set of indices of selected options.
+        config_count (int): Total number of configuration options.
+        current_row (int): The currently selected row in the menu.
+    """
     clear_screen()
     print(f"{config_count} configuration file(s) found.\n")
-    print("Use spacebar to select algorithms, selected will be shown in green")
+    print("Use spacebar to select algorithms; selected ones will be shown in green")
     print("Select Compression Algorithm(s):")
     
     # Print "Back to main menu" option
@@ -47,6 +56,15 @@ def print_menu(options, selected_rows, config_count, current_row):
 
 
 def select_config(prev_configs=None):
+    """
+    Allows the user to select compression configurations from a menu.
+
+    Args:
+        prev_configs (Set[int], optional): Previously selected configurations.
+
+    Returns:
+        Set[int]: Set of indices of selected configurations.
+    """
     configs_folder = "compression_configs"
     global configs 
     configs = load_configs(configs_folder)
@@ -61,24 +79,31 @@ def select_config(prev_configs=None):
         key = readchar.readkey()
         if key == readchar.key.UP and current_row > 0:
             current_row -= 1
-        elif key == readchar.key.DOWN and current_row < len(configs)+1:
+        elif key == readchar.key.DOWN and current_row < len(configs) + 1:
             current_row += 1
-        elif key == '\r' or key == '\n':
+        elif key in ('\r', '\n'):
             if current_row == 0:
                 return None
             if current_row == len(configs) + 1:
                 return selected_configs
         elif key == ' ':
-            if current_row != len(configs)+2:
+            if current_row != len(configs) + 2:
                 if current_row == 0:
                     return None
-                elif current_row-1 in selected_configs:
-                    selected_configs.remove(current_row-1)
+                elif current_row - 1 in selected_configs:
+                    selected_configs.remove(current_row - 1)
                 else:
-                    selected_configs.add(current_row-1)
+                    selected_configs.add(current_row - 1)
 
 
 def display_select_benchmark_menu(menu_options, selected_index):
+    """
+    Displays the benchmark type selection menu.
+
+    Args:
+        menu_options (List[str]): List of benchmark type options.
+        selected_index (int): Index of the currently selected option.
+    """
     clear_screen()
     print("Select benchmark type:")
     for i, option in enumerate(menu_options):
@@ -86,9 +111,15 @@ def display_select_benchmark_menu(menu_options, selected_index):
             print("\033[1;32m-> {}\033[0m".format(option))
         else:
             print("   {}".format(option))
-         
-            
+
+
 def select_benchmark_type():
+    """
+    Allows the user to select a benchmark type from a menu.
+
+    Returns:
+        str: The selected benchmark type ("compress" or "compress_decompress"), or None if canceled.
+    """
     menu_options = ["Back to menu", "Compress", "Compress-decompress"]
     selected_index = 0
     
@@ -111,11 +142,21 @@ def select_benchmark_type():
             display_select_benchmark_menu(menu_options, selected_index)
 
 
-def benchmark_param(selected_config_names,benchmark_type,filename,output_filename,output_to_file=False, output_plots=False):
-    all_results = []
+def benchmark_param(selected_config_names, benchmark_type, filename, output_filename, output_to_file=False, output_plots=False):
+    """
+    Benchmarks the selected compression configurations and either outputs results to a file or displays them.
+
+    Args:
+        selected_config_names (List[str]): List of names of selected configurations.
+        benchmark_type (str): Type of benchmark ("compress" or "compress_decompress").
+        filename (str): Path to the input file.
+        output_filename (str): Path to the output file.
+        output_to_file (bool, optional): If True, results are saved to a file.
+        output_plots (bool, optional): If True, plots are generated and displayed.
+    """
     configs_folder = "compression_configs"
     configs = load_configs(configs_folder)
-    selected_configs = [get_config(configs,x) for x in selected_config_names]
+    selected_configs = [get_config(configs, x) for x in selected_config_names]
     result_list = []
     for config in selected_configs:
         print("\033[1mSelected compression algorithm:\033[0m", config['name'])
@@ -126,11 +167,11 @@ def benchmark_param(selected_config_names,benchmark_type,filename,output_filenam
             file_size = os.path.getsize(filename)
             compressed_size = os.path.getsize(output_file)
             result_list.append({"filename": filename,
-                                "name": configs[config]["name"],
+                                "name": config['name'],
                                 "file_size": file_size,
                                 "compressed_size": compressed_size,
                                 "compression_time_ns": compression_time_ns})
-        if benchmark_type == "compress_decompress":
+        elif benchmark_type == "compress_decompress":
             output_file, compression_time_ns = compress_with_config(config, filename, output_filename)
             file_size = os.path.getsize(filename)
             if output_file != "":            
@@ -151,7 +192,7 @@ def benchmark_param(selected_config_names,benchmark_type,filename,output_filenam
                 file.write("File Size: {}\n".format(result["file_size"]))
                 file.write("Compressed Size: {}\n".format(result["compressed_size"]))
                 file.write("Compression Time (ns): {}\n".format(result["compression_time_ns"]))
-                file.write("Decompression Time (ns): {}\n".format(result["decompression_time_ns"]))
+                file.write("Decompression Time (ns): {}\n".format(result.get("decompression_time_ns", "N/A")))
                 file.write("\n")
     else:
         for result in result_list:
@@ -160,7 +201,7 @@ def benchmark_param(selected_config_names,benchmark_type,filename,output_filenam
             print("File Size:", result["file_size"])
             print("Compressed Size:", result["compressed_size"])
             print("Compression Time (ns):", result["compression_time_ns"])
-            print("Decompression Time (ns):", result["decompression_time_ns"])
+            print("Decompression Time (ns):", result.get("decompression_time_ns", "N/A"))
             print()
     
     if output_plots:
@@ -168,6 +209,15 @@ def benchmark_param(selected_config_names,benchmark_type,filename,output_filenam
 
 
 def read_boolean_input(prompt):
+    """
+    Reads a boolean input from the user.
+
+    Args:
+        prompt (str): The prompt message to display.
+
+    Returns:
+        bool: True if 'y' is entered, False if 'n' is entered.
+    """
     print(prompt)
     while True:
         key = readchar.readkey()
@@ -178,15 +228,18 @@ def read_boolean_input(prompt):
 
 
 def benchmark():
+    """
+    Main function for running benchmarks. Allows the user to select configurations, benchmark type, and output options.
+    """
     selected_configs = select_config()
-    if selected_configs == None:
+    if selected_configs is None:
         return        
     benchmark_type = select_benchmark_type()        
-    if benchmark_type == None:
+    if benchmark_type is None:
         print("No benchmark selected.")
     else:
         filename = input("\033[1mEnter input filename: \033[0m")
         output_filename = input("\033[1mEnter output filename (optional): \033[0m")
         output_to_file = read_boolean_input("Output to file? (y/n): ")
         output_plots = read_boolean_input("Output plots? (y/n): ")
-        benchmark_param([x["name"] for x in selected_configs],benchmark_type,filename,output_filename, output_to_file, output_plots)
+        benchmark_param([x["name"] for x in selected_configs], benchmark_type, filename, output_filename, output_to_file, output_plots)

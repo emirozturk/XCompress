@@ -6,12 +6,27 @@ import readchar
 
 
 def print_menu():
+    """
+    Prompts the user to enter JSON file paths and returns a list of file paths.
+
+    Returns:
+        list of str: A list of file paths entered by the user, split by spaces.
+    """
     clear_screen()
     file_paths_input = input("Enter the JSON file paths (space-separated): ")
     file_paths = [path.strip() for path in file_paths_input.split(" ")]
     return file_paths
 
 def read_results_from_files(file_paths):
+    """
+    Reads and combines results from multiple JSON files.
+
+    Args:
+        file_paths (list of str): A list of file paths to JSON files.
+
+    Returns:
+        list of dict: A combined list of results from all specified JSON files.
+    """
     all_results = []
     for file_path in file_paths:
         if os.path.exists(file_path):
@@ -24,6 +39,13 @@ def read_results_from_files(file_paths):
 
 
 def visualization_param(results):
+    """
+    Generates and displays a bar chart visualizing compression benchmark results.
+
+    Args:
+        results (list of dict): A list of benchmark results containing metrics like compressed size,
+                                compression time, and optionally decompression time.
+    """
     algorithms = list(set([result['name'] for result in results]))
 
     # Create traces for compressed size
@@ -105,6 +127,12 @@ def visualization_param(results):
 
 
 def visualization():
+    """
+    Main function to handle the visualization process:
+    - Prompts the user for file paths.
+    - Reads results from the specified files.
+    - Generates and displays a bar chart visualizing the benchmark results.
+    """
     file_paths = print_menu()
 
     if file_paths:

@@ -4,6 +4,21 @@ import timeit
 import os
 
 def decompress_with_config(config_data,input_file,output_file=""):
+    """
+    Decompresses a file using the specified configuration parameters.
+
+    Args:
+        config_data (dict): A dictionary containing configuration details such as 
+                            executable path, decompression parameters, and file parameters.
+        input_file (str): Path to the file that needs to be decompressed.
+        output_file (str): Path to the file where the decompressed output should be saved.
+                           If not specified, a default name based on the input file is used.
+
+    Returns:
+        tuple: A tuple containing:
+            - output_file (str): Path to the decompressed file.
+            - execution_time_ns (float): Time taken for decompression in nanoseconds.
+    """
     try:
         decompression_params = config_data["decompression_params"]
 
