@@ -1,0 +1,66 @@
+filename: english.50MB.txt
+mode: fast-compression
+run: 1
+eval_prompt: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: fast-compression).
+result: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: fast-compression). ### Output: The algorithm is: zlib
+
+filename: english.50MB.txt
+mode: fast-compression
+run: 2
+eval_prompt: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: fast-compression).
+result: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: fast-compression). ### Output: The algorithm is: zlib
+
+filename: english.50MB.txt
+mode: fast-compression
+run: 3
+eval_prompt: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: fast-compression).
+result: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: fast-compression). ### Output: The algorithm is: zlib
+
+filename: english.50MB.txt
+mode: fast-decompression
+run: 1
+eval_prompt: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: fast-decompression).
+result: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: fast-decompression). ### Output: The algorithm is: zlib
+
+filename: english.50MB.txt
+mode: fast-decompression
+run: 2
+eval_prompt: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: fast-decompression).
+result: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: fast-decompression). ### Output: The algorithm is: brotli
+
+filename: english.50MB.txt
+mode: fast-decompression
+run: 3
+eval_prompt: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: fast-decompression).
+result: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: fast-decompression). ### Output: The algorithm is: brotli
+
+filename: english.50MB.txt
+mode: best-compression
+run: 1
+eval_prompt: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: best-compression).
+result: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: best-compression). ### Output: The algorithm is: brotli
+
+filename: english.50MB.txt
+mode: best-compression
+run: 2
+eval_prompt: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: best-compression).
+result: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: best-compression). ### Output: The algorithm is: brotli
+
+filename: english.50MB.txt
+mode: best-compression
+run: 3
+eval_prompt: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: best-compression).
+result: ### Instruction: We need to find algorithm from given input params: (usc:50, file_size:100mb, compression_type: best-compression). ### Output: The algorithm is: brotli
+
+filename: english.50MB.txt
+mode: fast-compression
+Three runs are the same?: yes
+
+filename: english.50MB.txt
+mode: fast-decompression
+Three runs are the same?: no
+
+filename: english.50MB.txt
+mode: best-compression
+Three runs are the same?: yes
+
