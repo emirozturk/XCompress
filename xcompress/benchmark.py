@@ -13,7 +13,7 @@ def print_menu(options, selected_rows, config_count, current_row):
     Prints the menu for selecting compression algorithms.
 
     Args:
-        options (List[Dict[str, str]]): List of configuration options.
+        options (List[Dict[str, str]]): List of defined compression algorithms with configuration files.
         selected_rows (Set[int]): Set of indices of selected options.
         config_count (int): Total number of configuration options.
         current_row (int): The currently selected row in the menu.
@@ -147,7 +147,7 @@ def benchmark_param(selected_config_names, benchmark_type, filename, output_file
     Benchmarks the selected compression configurations and either outputs results to a file or displays them.
 
     Args:
-        selected_config_names (List[str]): List of names of selected configurations.
+        selected_config_names (List[str]): List of names of selected configurations (compression methods).
         benchmark_type (str): Type of benchmark ("compress" or "compress_decompress").
         filename (str): Path to the input file.
         output_filename (str): Path to the output file.

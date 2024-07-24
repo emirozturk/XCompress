@@ -26,7 +26,7 @@ def model_compression_param(filename, mode, output_filename):
     
     Args:
         filename (str): The input file to compress.
-        mode (str): The compression mode.
+        mode (str): The compression mode (fast-compress, fast-decompress or best-compress).
         output_filename (str): The name of the output file.
     """
     configs_folder = "compression_configs"

@@ -1,0 +1,10 @@
+site_name: XCompress
+theme:
+  name: "material"
+
+nav:
+  - index.md
+  - tutorials.md
+  - reference.md
+plugins:
+  - mkdocstrings

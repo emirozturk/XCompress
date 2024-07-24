@@ -97,6 +97,8 @@ def round_to_class(file_size_bytes):
 def bin_usc(usc_value):
     """
     Bins the unique symbol count (USC) value into a multiple of 50.
+    To use USC as a feature to train ai model, selected features must have limited values. If USC is given raw, accuracy decreases. 
+    To prevent this, USC values have been divided into groups of 50.
 
     Args:
         usc_value (int): The unique symbol count value.

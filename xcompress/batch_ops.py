@@ -23,7 +23,8 @@ def get_configs():
 
 def batch_compress_decompress(input_file, out_folder, skip_if_file_exists):
     """
-    Compresses and decompresses a file using multiple compression configurations, then returns performance metrics for each configuration.
+    Compresses and decompresses a file using multiple compression configurations, returns performance metrics for each configuration.
+    Not reachable from cli or menu. For getting batch results for all defined config files. These results are used to train CSM module.
 
     Args:
         input_file (str): The path to the input file to be compressed and decompressed.

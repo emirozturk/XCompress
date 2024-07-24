@@ -14,7 +14,6 @@ def compress_with_config(config_data, input_file, output_file=""):
         tuple: A tuple containing the output file path and the compression execution time in nanoseconds.
     """
     try:
-        # Extract and prepare compression parameters
         compression_params = config_data["compression_params"]
 
         input_file_param = config_data["input_file_param"]

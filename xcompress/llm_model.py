@@ -16,7 +16,7 @@ def detect_algorithm(filename,mode):
 
     Args:
         filename (str): Path to the file for which the algorithm needs to be detected.
-        mode (str): Compression mode to be used for detection (e.g., "fast-compression", "best-compression").
+        mode (str): Compression mode to be used for detection ("fast-compression", "best-compression","fast-decompression").
 
     Returns:
         str: The name of the detected compression algorithm.
