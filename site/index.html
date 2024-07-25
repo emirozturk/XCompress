@@ -1,0 +1,523 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="tutorials/">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
+    
+    
+      
+        <title>XCompress</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.3cba04c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#xcompress-llm-assisted-python-based-text-compression-toolkit" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="XCompress" class="md-header__button md-logo" aria-label="XCompress" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            XCompress
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              XCompress: LLM Assisted Python-based Text Compression Toolkit
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="XCompress" class="md-nav__button md-logo" aria-label="XCompress" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    XCompress
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    XCompress: LLM Assisted Python-based Text Compression Toolkit
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    XCompress: LLM Assisted Python-based Text Compression Toolkit
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contributing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      License
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tutorials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XCompress Command Line Tool Examples
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Features
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contributing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    <span class="md-ellipsis">
+      License
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="xcompress-llm-assisted-python-based-text-compression-toolkit">XCompress: LLM Assisted Python-based Text Compression Toolkit</h1>
+<p>XCompress is an adaptable tool designed to streamline the selection and evaluation of text compression algorithms. Leveraging a combination of manual selection, AI-driven recommendations (via CSM), brute-force optimization, and comprehensive benchmarking, XCompress empowers users to achieve optimal text compression for their specific requirements.</p>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li><strong>Manual Algorithm Selection:</strong> Researchers and practitioners can exercise fine-grained control by manually choosing from a diverse set of established compression algorithms.</li>
+<li><strong>CSM-Guided Algorithm Recommendation:</strong> The integrated CSM (Compression Selection Model) leverages artificial intelligence to intelligently suggest the most suitable algorithm based on user-defined priorities, such as minimizing compression time, decompression time, or achieving the highest compression ratio.</li>
+<li><strong>Brute-Force Optimization:</strong> For scenarios demanding the absolute best compression, XCompress offers a brute-force search functionality that systematically evaluates all available algorithms to identify the one yielding the smallest compressed file size.</li>
+<li><strong>Comprehensive Benchmarking:</strong> A robust benchmarking module facilitates direct comparison of algorithm performance on specified datasets, aiding in evidence-based decision-making.</li>
+<li><strong>Extensibility for Custom Algorithms:</strong> XCompress allows users to seamlessly integrate and evaluate their own novel compression algorithms, fostering innovation and customization.</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<ol>
+<li>
+<p><strong>Clone the Repository:</strong>
+   <code>bash
+   git clone https://github.com/emirozturk/XCompress.git</code></p>
+</li>
+<li>
+<p><strong>Install Dependencies:</strong>
+   <code>bash
+   pip install -r requirements.txt</code></p>
+</li>
+</ol>
+<h2 id="usage">Usage</h2>
+<p><strong>Interactive Mode</strong></p>
+<p>Initiate the interactive mode by executing the following command:</p>
+<pre><code class="language-bash">python main.py
+</code></pre>
+<p>Navigate through the menu-driven interface using arrow keys and select options using the Enter key.</p>
+<p><strong>Command-Line Interface (CLI)</strong></p>
+<p>For scripted or automated workflows, utilize the command-line interface:</p>
+<pre><code class="language-bash">python main.py &lt;command&gt; [options]
+</code></pre>
+<p><strong>Command Reference</strong></p>
+<ul>
+<li><code>manual &lt;algorithm_name&gt; &lt;input_filename&gt; [--output_filename]</code></li>
+<li><code>algorithm_name</code>: The identifier of the desired compression algorithm (e.g., "gzip", "bzip2", "lzma").</li>
+<li><code>input_filename</code>: The path to the text file to be compressed.</li>
+<li>
+<p><code>--output_filename</code> (optional): The name to be assigned to the resulting compressed file.</p>
+</li>
+<li>
+<p><code>csm &lt;mode&gt; &lt;input_filename&gt; [--output_filename]</code></p>
+</li>
+<li><code>mode</code>: Specify the optimization goal: "fast-compression", "fast-decompression", or "best-compression".</li>
+<li><code>input_filename</code>: The path to the text file.</li>
+<li>
+<p><code>--output_filename</code> (optional): The name for the compressed file.</p>
+</li>
+<li>
+<p><code>brute_force &lt;input_filename&gt; &lt;out_folder&gt; [--delete_except_minimum]</code></p>
+</li>
+<li><code>input_filename</code>: The path to the text file.</li>
+<li><code>out_folder</code>: Directory where output files are stored.</li>
+<li>
+<p><code>--delete_except_minimum</code> (optional): Add this param to retain only the smallest compressed file generated during the brute-force process.</p>
+</li>
+<li>
+<p><code>benchmark &lt;benchmark_type&gt; &lt;input_filename&gt; [--output_to_file] [--output_plots] &lt;algorithm_names&gt; [--output_filename]</code></p>
+</li>
+<li><code>benchmark_type</code>: Choose "compress" for compression-only benchmarks or "compress_decompress" for compression and decompression benchmarks.</li>
+<li><code>input_filename</code>: The path to the text file.</li>
+<li><code>--output_to_file</code> (optional): Add this param to save benchmark results in a structured file format.</li>
+<li><code>--output_plots</code> (optional): Add this param to generate visual plots summarizing the benchmark results.</li>
+<li><code>algorithm_names</code>: A space-separated list of algorithm names or custom configuration names to include in the benchmark.</li>
+<li>
+<p><code>--output_filename</code> (optional): The path to save the benchmark results file (defaults to input filename with .<algorithm> extension).</p>
+</li>
+<li>
+<p><code>config_creation &lt;name&gt; &lt;executable_path&gt; [--input_file_param] [--output_file_param] [--compression_params] [--decompression_params] &lt;extension&gt;</code></p>
+</li>
+<li><code>name</code>: The name of the new configuration.</li>
+<li><code>executable_path</code>: The path to the executable for the compression algorithm.</li>
+<li><code>--input_file_param</code> (optional): The parameter for the input file in the executable command.</li>
+<li><code>--output_file_param</code> (optional): The parameter for the output file in the executable command.</li>
+<li><code>--compression_params</code> (optional): List of parameters for the compression process.</li>
+<li><code>--decompression_params</code> (optional): List of parameters for the decompression process (if applicable).</li>
+<li>
+<p><code>extension</code>: The file extension to use for compressed files generated by this configuration.</p>
+</li>
+<li>
+<p><code>visualization &lt;file_path&gt;</code></p>
+</li>
+<li><code>file_path</code>: The path to the JSON file to visualize.</li>
+</ul>
+<h2 id="contributing">Contributing</h2>
+<p>Contributions that enhance the functionality, usability, or documentation of XCompress are warmly welcomed. Please adhere to established code style guidelines and provide comprehensive documentation for any new features or modifications.</p>
+<h2 id="license">License</h2>
+<p>This project is licensed under the MIT License.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
