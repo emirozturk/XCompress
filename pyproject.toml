@@ -1,0 +1,63 @@
+[project]
+name = "XCompress"
+version = "1.0.0"
+description = "LLM Assisted Python-based Text Compression Toolkit"
+authors = [
+    { name = "Emir Öztürk", email = "emirozturk@trakya.edu.tr" },
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["compression", "algorithm", "library","LLM"]
+
+[project.urls]
+homepage = "https://github.com/emirozturk/XCompress"
+repository = "https://github.com/emirozturk/XCompress"
+
+[project.dependencies]
+readchar = "*"
+torch = "*"
+transformers = "*"
+plotly = "*"
+kaleido = "*"
+pytest = "*"
+
+[project.optional-dependencies]
+test = ["pytest >=5.2", "pytest-mock", "coverage[toml]"]
+
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+minversion = "7.2"
+norecursedirs = [
+    "hooks",
+    "*.egg",
+    ".eggs",
+    "dist",
+    "build",
+    "docs",
+    ".tox",
+    ".git",
+    "__pycache__" ]
+testpaths = ["xcompress", "tests"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+)/
+'''

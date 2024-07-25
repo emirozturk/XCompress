@@ -1,3 +1,6 @@
+[![Docs](https://img.shields.io/badge/docs-stable-blue.svg)](https://emirozturk.github.io/XCompress)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/emirozturk/XCompress/blob/main/LICENSE)
+
 # XCompress: LLM Assisted Python-based Text Compression Toolkit
 
 XCompress is an adaptable tool designed to streamline the selection and evaluation of text compression algorithms. Leveraging a combination of manual selection, AI-driven recommendations (via CSM), brute-force optimization, and comprehensive benchmarking, XCompress empowers users to achieve optimal text compression for their specific requirements.

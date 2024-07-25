@@ -1,0 +1,18 @@
+[
+    {
+        "filename": "/Users/emirozturk/Desktop/nattest.txt",
+        "name": "gzip",
+        "file_size": 1028,
+        "compressed_size": 651,
+        "compression_time_ns": 7576083.997264504,
+        "decompression_time_ns": 4941208.986565471
+    },
+    {
+        "filename": "/Users/emirozturk/Desktop/nattest.txt",
+        "name": "lz4",
+        "file_size": 1028,
+        "compressed_size": 916,
+        "compression_time_ns": 5006290.972232819,
+        "decompression_time_ns": 4168999.847024679
+    }
+]
