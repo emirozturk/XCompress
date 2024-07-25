@@ -2,7 +2,7 @@ import readchar
 from compress import compress_with_config
 from decompress import decompress_with_config
 from util import clear_screen, load_configs, get_config
-import matplotlib.pyplot as plt
+import json
 import os
 from visualization import visualization_param
 
@@ -185,15 +185,8 @@ def benchmark_param(selected_config_names, benchmark_type, filename, output_file
                                 "decompression_time_ns": decompression_time_ns})
 
     if output_to_file:
-        with open("benchmark_results.txt", "w") as file:
-            for result in result_list:
-                file.write("Filename: {}\n".format(result["filename"]))
-                file.write("Name: {}\n".format(result["name"]))
-                file.write("File Size: {}\n".format(result["file_size"]))
-                file.write("Compressed Size: {}\n".format(result["compressed_size"]))
-                file.write("Compression Time (ns): {}\n".format(result["compression_time_ns"]))
-                file.write("Decompression Time (ns): {}\n".format(result.get("decompression_time_ns", "N/A")))
-                file.write("\n")
+        with open("benchmark_results.json", "w") as file:
+                json.dump(result_list, file, indent=4)
     else:
         for result in result_list:
             print("Filename:", result["filename"])

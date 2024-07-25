@@ -20,20 +20,20 @@ def print_menu(selected_row, options):
             print("\033[37m   ", option, "\033[0m")  # Set to white
 
 
-def model_compression_param(filename, mode, output_filename):
+def model_compression_param(mode, filename, output_filename):
     """
     Executes compression based on the selected algorithm and mode.
     
     Args:
-        filename (str): The input file to compress.
         mode (str): The compression mode (fast-compress, fast-decompress or best-compress).
+        filename (str): The input file to compress.
         output_filename (str): The name of the output file.
     """
     configs_folder = "compression_configs"
     configs = load_configs(configs_folder)
     
     # Detect the algorithm based on filename and mode
-    selected_algorithm = detect_algorithm(filename, mode.lower().replace(" ", "-"))
+    selected_algorithm = detect_algorithm(filename,mode.lower().replace(" ", "-"))
     selected_config = get_config(configs, selected_algorithm)
     
     if selected_config is None:
@@ -44,7 +44,7 @@ def model_compression_param(filename, mode, output_filename):
     print("\033[1mSelected compression algorithm:\033[0m", selected_algorithm)
     print("\033[1mInput filename:\033[0m", filename)
     print("\033[1mOutput filename:\033[0m", output_filename)
-    clear_screen()
+    
     
     try:
         output, _ = compress_with_config(selected_config, filename, output_filename)

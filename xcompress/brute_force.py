@@ -24,7 +24,7 @@ def print_menu(selected_row, options):
             print("\033[32m   ", option, "\033[0m")
 
 
-def brute_force_param(filename, out_folder, output_filename, delete_except_minimum=False):
+def brute_force_param(filename, out_folder, delete_except_minimum=False):
     """
     Performs brute-force compression using all available configurations and selects the one with the minimum compressed size.
 
@@ -42,7 +42,8 @@ def brute_force_param(filename, out_folder, output_filename, delete_except_minim
         name = config_file["name"]
         try:
             extension = config_file["extension"]
-            out_file_name = os.path.join(out_folder, name, f"{os.path.basename(filename)}.{extension}")
+            print(f"Trying {name}...")
+            out_file_name = os.path.join(out_folder, f"{os.path.basename(filename)}.{extension}")
             output_file, compression_time_ns = compress_with_config(config_file, filename, out_file_name)
             compressed_size = os.path.getsize(output_file)
             result_list.append({"name": name, "compressed_size": compressed_size, "output_file": output_file})
@@ -59,14 +60,14 @@ def brute_force_param(filename, out_folder, output_filename, delete_except_minim
     
     selected_config = get_config(configs, min_size_name)
     
+    output, _ = compress_with_config(selected_config, filename, "")
+
     print("\033[1mSelected compression algorithm:\033[0m", min_size_name)
     print("\033[1mInput filename:\033[0m", filename)
-    print("\033[1mOutput filename:\033[0m", output_filename)
-    
-    clear_screen()
-    output, _ = compress_with_config(selected_config, filename, output_filename)
+    print("\033[1mOutput filename:\033[0m", output)
+
     print(f"Compression completed successfully. Filename is \033[1m{output}\033[0m")
-    input("Press any key to return to menu")
+    input("Press any key to exit")
     return
 
 

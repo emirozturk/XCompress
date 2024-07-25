@@ -21,7 +21,7 @@ def detect_algorithm(filename,mode):
     Returns:
         str: The name of the detected compression algorithm.
     """
-    device = "cuda" if torch.cuda.is_available else "cpu"
+    device = "cuda" if torch.cuda.is_available() else "mps"
     base_model_name = "emirozturk/CSM"
     model = AutoModelForCausalLM.from_pretrained(base_model_name).to(device)
     tokenizer = AutoTokenizer.from_pretrained(base_model_name,padding_side = 'right')

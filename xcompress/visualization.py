@@ -17,35 +17,37 @@ def print_menu():
     file_paths = [path.strip() for path in file_paths_input.split(" ")]
     return file_paths
 
-def read_results_from_files(file_paths):
+def read_results_from_file(file_path):
     """
-    Reads and combines results from multiple JSON files.
+    Reads the results in a JSON file.
 
     Args:
-        file_paths (list of str): A list of file paths to JSON files.
+        file_path (str): Path to JSON file.
 
     Returns:
         list of dict: A combined list of results from all specified JSON files.
     """
     all_results = []
-    for file_path in file_paths:
-        if os.path.exists(file_path):
-            with open(file_path, 'r') as file:
-                results = json.load(file)
-                all_results.extend(results)
-        else:
-            print(f"File not found: {file_path}")
+    if os.path.exists(file_path):
+        with open(file_path, 'r') as file:
+            results = json.load(file)
+            all_results.extend(results)
+    else:
+        print(f"File not found: {file_path}")
     return all_results
 
 
-def visualization_param(results):
+def visualization_param(file_path):
     """
     Generates and displays a bar chart visualizing compression benchmark results.
 
     Args:
-        results (list of dict): A list of benchmark results containing metrics like compressed size,
+        file_path (str): Path to JSON file containing metrics like compressed size,
                                 compression time, and optionally decompression time.
     """
+
+    results = read_results_from_file(file_path)
+
     algorithms = list(set([result['name'] for result in results]))
 
     # Create traces for compressed size
@@ -133,13 +135,9 @@ def visualization():
     - Reads results from the specified files.
     - Generates and displays a bar chart visualizing the benchmark results.
     """
-    file_paths = print_menu()
+    file_path = print_menu()
 
-    if file_paths:
-        results = read_results_from_files(file_paths)
-        if results:
-            visualization_param(results)
-        else:
-            print("No valid results to display.")
+    if file_path:
+        visualization_param(file_path)
     else:
         print("No file paths provided.")
