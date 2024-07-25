@@ -79,7 +79,7 @@ python main.py <command> [options]
 * `visualization <file_path>`
   * `file_path`: The path to the JSON file to visualize.
 
-For more detailed information, please check the documentation at [documentation](https://emirozturk.github.io/XCompress)
+For more detailed information, please check the [documentation](https://emirozturk.github.io/XCompress)
 
 ## Contributing
 
