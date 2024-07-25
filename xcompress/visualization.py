@@ -122,11 +122,6 @@ def visualization_param(file_path):
 
     fig.show()
 
-    # Save plots to files
-    fig.write_image("results_compressed_size.png")
-    fig.write_image("results_compression_time.png")
-    fig.write_image("results_decompression_time.png")
-
 
 def visualization():
     """

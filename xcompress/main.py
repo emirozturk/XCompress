@@ -7,7 +7,7 @@ from benchmark import benchmark, benchmark_param
 from brute_force import brute_force_compression, brute_force_param
 from create_config import create_config, create_config_param
 from util import clear_screen
-from visualization import visualization_param
+from visualization import visualization,visualization_param
 
 class CustomHelpAction(argparse.Action):
     """
