@@ -79,6 +79,8 @@ python main.py <command> [options]
 * `visualization <file_path>`
   * `file_path`: The path to the JSON file to visualize.
 
+For more detailed information, please check the documentation at [documentation][docs]
+
 ## Contributing
 
 Contributions that enhance the functionality, usability, or documentation of XCompress are warmly welcomed. Please adhere to established code style guidelines and provide comprehensive documentation for any new features or modifications.
