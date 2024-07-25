@@ -1,4 +1,4 @@
-[![Docs](https://img.shields.io/badge/docs-stable-blue.svg)](https://emirozturk.github.io/XCompress/)
+[![Docs](https://img.shields.io/badge/docs-stable-blue.svg)](https://emirozturk.github.io/XCompress)
 
 # XCompress: LLM Assisted Python-based Text Compression Toolkit
 
@@ -81,7 +81,7 @@ python main.py <command> [options]
 * `visualization <file_path>`
   * `file_path`: The path to the JSON file to visualize.
 
-For more detailed information, please check the documentation at [documentation][docs]
+For more detailed information, please check the documentation at [documentation][docs](https://emirozturk.github.io/XCompress)
 
 ## Contributing
 
