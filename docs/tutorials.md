@@ -168,7 +168,7 @@ Output filename: nattest.txt.lz4
 ```
 
 The plot module will then run in the application, and the following screenshot will be displayed.
-![alt text](https://github.com/emirozturk/xcompress/blob/main/docs/visualization.png?raw=true)
+![alt text](https://github.com/emirozturk/xcompress/blob/main/docs/Images/visualization.png?raw=true)
 
 
 ---
@@ -242,14 +242,14 @@ python main.py visualization benchmark_results.json
 ```
 
 As a result, the visualization module will run in the browser and generate the plots.  
-![alt text](https://github.com/emirozturk/xcompress/blob/main/docs/plot5.png?raw=true)
+![alt text](https://github.com/emirozturk/xcompress/blob/main/docs/Images/plot5.png?raw=true)
 
 You can select and plot three different results separately if desired.  
-![alt text](https://github.com/emirozturk/xcompress/blob/main/docs/plot1.png?raw=true)  
-![alt text](https://github.com/emirozturk/xcompress/blob/main/docs/plot3.png?raw=true)  
-![alt text](https://github.com/emirozturk/xcompress/blob/main/docs/plot4.png?raw=true)
+![alt text](https://github.com/emirozturk/xcompress/blob/main/docs/Images/plot1.png?raw=true)  
+![alt text](https://github.com/emirozturk/xcompress/blob/main/docs/Images/plot3.png?raw=true)  
+![alt text](https://github.com/emirozturk/xcompress/blob/main/docs/Images/plot4.png?raw=true)
 
 Additionally, real-time methods or results can be extracted and added to the plot.  
-![alt text](https://github.com/emirozturk/xcompress/blob/main/docs/plot2.png?raw=true)
+![alt text](https://github.com/emirozturk/xcompress/blob/main/docs/Images/plot2.png?raw=true)
 
 Moreover, the library provides support for resizing, autoscaling, and other features. The generated plots can also be downloaded.
