@@ -1,7 +1,7 @@
 import readchar
-from .compress import compress_with_config
-from .util import clear_screen, load_configs, get_config
-from .llm_model import detect_algorithm
+from compress import compress_with_config
+from util import clear_screen, load_configs, get_config
+from llm_model import detect_algorithm
 
 
 def print_menu(selected_row, options):

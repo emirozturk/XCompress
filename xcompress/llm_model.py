@@ -3,7 +3,7 @@ from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
 )
-from .util import bin_usc, count_unique_symbols, round_to_class, get_file_size
+from util import bin_usc, count_unique_symbols, round_to_class, get_file_size
 
 
 def detect_algorithm(filename, mode):

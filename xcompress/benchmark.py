@@ -1,10 +1,10 @@
 import readchar
-from .compress import compress_with_config
-from .decompress import decompress_with_config
-from .util import clear_screen, load_configs, get_config
+from compress import compress_with_config
+from decompress import decompress_with_config
+from util import clear_screen, load_configs, get_config
 import json
 import os
-from .visualization import visualization_param
+from visualization import visualization_param
 
 configs = []
 

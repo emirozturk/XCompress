@@ -1,7 +1,7 @@
 import json
 import plotly.graph_objects as go
 import os
-from .util import clear_screen
+from util import clear_screen
 import readchar
 
 

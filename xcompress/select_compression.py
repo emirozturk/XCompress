@@ -1,6 +1,6 @@
 import readchar
-from .compress import compress_with_config
-from .util import clear_screen, load_configs
+from compress import compress_with_config
+from util import clear_screen, load_configs
 import os
 
 def print_menu(options, selected_row, config_count):

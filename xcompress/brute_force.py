@@ -1,5 +1,5 @@
-from .compress import compress_with_config
-from .util import clear_screen, load_configs, get_config
+from compress import compress_with_config
+from util import clear_screen, load_configs, get_config
 import os
 
 

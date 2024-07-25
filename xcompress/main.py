@@ -1,13 +1,13 @@
 import argparse
 import readchar
 import sys
-from .select_compression import select_compression, select_compression_param
-from .csm import model_compression, model_compression_param
-from .benchmark import benchmark, benchmark_param
-from .brute_force import brute_force_compression, brute_force_param
-from .create_config import create_config, create_config_param
-from .util import clear_screen
-from .visualization import visualization, visualization_param
+from select_compression import select_compression, select_compression_param
+from csm import model_compression, model_compression_param
+from benchmark import benchmark, benchmark_param
+from brute_force import brute_force_compression, brute_force_param
+from create_config import create_config, create_config_param
+from util import clear_screen
+from visualization import visualization, visualization_param
 
 
 class CustomHelpAction(argparse.Action):
