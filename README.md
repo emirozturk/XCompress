@@ -92,3 +92,17 @@ Contributions that enhance the functionality, usability, or documentation of XCo
 ## License
 
 This project is licensed under the MIT License.
+
+## Citation
+
+```
+@article{ozturk2024xcompress,
+  title={XCompress: LLM assisted Python-based text compression toolkit},
+  author={{\"O}zt{\"u}rk, Emir},
+  journal={SoftwareX},
+  volume={27},
+  pages={101847},
+  year={2024},
+  publisher={Elsevier}
+}
+```
